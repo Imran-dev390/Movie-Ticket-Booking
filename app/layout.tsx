@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import Link from "next/dist/client/link";
+import SessionWrapper from "./components/SessionWrapper"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,12 +19,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  console.log("testing client_ID",process.env.GITHUB_ID);
+  console.log("testing client_SECRET",process.env.GITHUB_SECRET);
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      {/* <SessionWrapper> */}
+      <body className="min-h-screen flex min-w-screen flex-col bg-black text-white">
+        {children}
+      </body>
+      {/* </SessionWrapper> */}
     </html>
   );
 }
