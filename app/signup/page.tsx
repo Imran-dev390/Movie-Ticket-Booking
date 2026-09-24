@@ -45,7 +45,7 @@ export default function SignupPage() {
       // { message: "User Created", user: newUser }
       localStorage.setItem(
         "user",
-        JSON.stringify(data.user)
+        JSON.stringify(data.user || data.user?.user )
       );
 
       // Go to home
